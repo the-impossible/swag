@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Homepage{% endblock title %}
+
+{% block head %}{% include 'partials/head.html' %}{% endblock head %}
+
+  {% block body %}
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+      {% block nav %} {% include 'partials/nav.html' %} {% endblock %}
+
+      <!-- ========= WELCOME ==================-->
+      <section class="pt-7">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 text-md-start text-center py-6">
+              <h1 class="mb-4 fs-9 fw-bold">Welcome onboard CHAMP!</h1>
+              <p class="mb-6 lead text-secondary">SWAG (Swing Academic Game) is not just your average educational tool <br class="d-none d-xl-block" />- it's a revolutionary approach to learning that combines fun and competition to enhance student performance and mastery across various subjects.</p>
+              <div class="text-center text-md-start">
+                <a class="btn btn-warning me-3 btn-lg" href="#validation" role="button">Read More</a>
+              </div>
+            </div>
+            <div class="col-md-6 text-end"><img class="pt-7 pt-md-0 img-fluid" src="{% static 'frontend/assets/img/hero/hero-img.png' %}" alt="" /></div>
+          </div>
+        </div>
+      </section>
+      <!-- ============================================-->
+
+
+      <!--==========WHAT============-->
+      <section class="pt-5" id="validation">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6"><img class="img-fluid" src="{% static 'frontend/assets/img/manager.png' %}" alt="" /></div>
+            <div class="col-lg-6">
+              <h5 class="text-secondary">What is </h5>
+              <h2 class="mb-2 fs-7 fw-bold">SWAG</h2>
+              <p class="mb-4 fw-medium text-secondary">
+                SWAG is designed with the aim of breaking the monotony of traditional learning methods, SWAG transforms studying into an exciting adventure.
+              </p>
+
+              <p class="mb-4 fw-medium text-secondary"><span class="fs-1 fw-bold">SW: SWING</span> SWAG swings learning into an exciting and dynamic experience, adding a new dimension to traditional education methods.</p>
+
+              <p class="mb-4 fw-medium text-secondary">
+                <span class="fs-1 fw-bold">A: ACADEMIC</span>
+                SWAG focuses on academic excellence, providing students with opportunities to excel in various subjects and skills.</p>
+
+              <p class="mb-4 fw-medium text-secondary">
+                <span class="fs-1 fw-bold">G: GAME</span> SWAG turns learning into a game, making it fun, interactive, and engaging for students of all ages</h4>
+            </div>
+
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- ============================================-->
+
+      <!-- =============OTHER INFO===================-->
+      <section class="pt-5" id="marketing">
+
+        <div class="container">
+          <h1 class="fw-bold fs-6 mb-3">How it Looks</h1>
+          <p class="mb-6 text-secondary">Through its engaging interface and interactive features, SWAG creates an immersive learning environment that captivates students' attention and ignites their curiosity. </p>
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <img class="card-img-top img-fluid" width="100" src="{% static 'frontend/assets/img/swag1.jpg' %}" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card-body">
+                <img class="card-img-top img-fluid" width="100" src="{% static 'frontend/assets/img/swag2.jpg' %}" alt="" />
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+
+                <div class="card-body">
+                  <img class="card-img-top img-fluid" width="100" src="{% static 'frontend/assets/img/swag3.jpg' %}" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- =============================-->
+
+
+      <!--=========FEATURES=============-->
+      <section class="pt-5 pt-md-9 mb-6" id="feature">
+
+        <div class="bg-holder z-index--1 bottom-0 d-none d-lg-block" style="background-image:url({% static 'frontend/assets/img/category/shape.png' %});opacity:.5;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <h1 class="fs-9 fw-bold mb-4 text-center"> Powered benefits of SWAG to unveiw your superpowers</h1>
+          <div class="row">
+            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3" src="{% static 'frontend/assets/img/category/icon1.png' %}" width="75" alt="Feature" />
+              <h4 class="mb-3">Enhanced Learning Experience</h4>
+              <p class="mb-0 fw-medium text-secondary">SWAG provides a unique and engaging platform for students to learn and revise various subjects and skills.</p>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3" src="{% static 'frontend/assets/img/category/icon2.png' %}" width="75" alt="Feature" />
+              <h4 class="mb-3">Assessment and Performance Tracking</h4>
+              <p class="mb-0 fw-medium text-secondary"> SWAG assesses student performance in different fields, providing valuable feedback on strengths and areas needing improvement.</p>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3" src="{% static 'frontend/assets/img/category/icon3.png' %}" width="75" alt="Feature" />
+              <h4 class="mb-3">Encouragement of Regular Revision</h4>
+              <p class="mb-0 fw-medium text-secondary">Through regular competitions and challenges, SWAG encourages students to engage in consistent revision of their subjects.</p>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3" src="{% static 'frontend/assets/img/category/icon4.png' %}" width="75" alt="Feature" />
+              <h4 class="mb-3">Development of Competitive Spirit and Confidence</h4>
+              <p class="mb-0 fw-medium text-secondary">Participation in SWAG competitions fosters a sense of healthy competition among students, motivating them to strive for excellence..</p>
+            </div>
+          </div>
+          <div class="text-center"><a class="btn btn-warning mt-5" href="#" role="button">SIGN UP NOW</a></div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- ============================================-->
+
+      <!-- =========COMPETITION==========-->
+      <section class="pt-5" id="manager">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <h5 class="text-secondary">competition details</h5>
+              <p class="fs-7 fw-bold mb-2">SWAG Competition Details</p>
+              <p class="mb-4 fw-medium text-secondary">
+                The SWAG competition invites primary and junior secondary school students from Ekiti State to engage in a dynamic and exciting academic challenge. With a focus on promoting excellence across various subjects and skills, SWAG competitions offer a platform for students to showcase their knowledge and abilities in a fun and interactive environment.
+              </p>
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary"><b>Registration Opens:</b> April 2nd - May 10th, 2024</p>
+              </div>
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary"><b>Pre-Qualifying Stage:</b> May 13th - May 17th, 2024</p>
+              </div>
+              <div class="d-flex align-items-center mb-3"><img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary"> <b>Competition Runs:</b> May 20th - July 20th, 2024</p>
+              </div>
+              <p class="fs-7 fw-bold mb-2">Crieria and How to Play</p>
+
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary">Buy at least 1 complete pack of SWAG Box for a household or an individaual and 2 for each school.</p>
+              </div>
+
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary">Register on this website.</p>
+              </div>
+
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary">Play the qualifying rounds to qualify for the grand finale.</p>
+              </div>
+
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary">You can compete as an individual or as a school representative.</p>
+              </div>
+
+            </div>
+            <div class="col-lg-6"><img class="img-fluid" src="{% static 'frontend/assets/img/validation.png' %}" alt="" />
+            </div>
+          </div>
+        </div><!-- end of .container-->
+      </section>
+      <!-- ============================================-->
+
+
+      <!-- ============================================-->
+      <section class="py-md-11 py-8" id="superhero">
+
+        <div class="bg-holder z-index--1 bottom-0 d-none d-lg-block background-position-top" style="background-image:url({% static 'frontend/assets/img/superhero/oval.png' %});opacity:.5; background-position: top !important ;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+              <h1 class="fw-bold mb-4 fs-7">Need a SWAG Box?</h1>
+              <p class="mb-5 text-info fw-medium">simply create an account with us to get started. Once your account is set up, you can proceed to make a payment through our secure payment gateway. Once the payment is confirmed, your SWAG Box will be shipped to your provided address. Get ready to enhance your learning experience with SWAG! </p>
+              <a href="#" class="btn btn-warning btn-md">Sign Up</a>
+            </div>
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- ============================================-->
+
+      <!-- ============PRIZE===============-->
+      <section class="pt-5" id="marketer">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <h5 class="text-secondary">prizes</h5>
+              <p class="mb-2 fs-8 fw-bold">Prizes To be Won</p>
+              <p class="mb-4 fw-medium text-secondary">SWAG competitions offer an array of exciting prizes to motivate and reward participants for their academic achievements. These prizes are designed to not only celebrate the success of participants but also to encourage continued dedication to learning and academic excellence.</p>
+
+              <p class="mb-4 fw-medium text-secondary"><b class="fw-bold fs-1">First Position: </b> Total gift of (₦300,000) cash prize of ₦200,000 and items worth ₦100,000</p>
+
+              <p class="mb-4 fw-medium text-secondary"><b class="fw-bold fs-1">Second Position: </b> Total gift of (₦200,000) cash prize of ₦120,000 and items worth ₦80,000</p>
+
+              <p class="mb-4 fw-medium text-secondary"><b class="fw-bold fs-1">Third Position: </b> Total gift of (₦100,000) cash prize of ₦70,000 and items worth ₦30,000</p>
+
+              <p class="mb-4 fw-medium text-secondary"><b class="fw-bold fs-1">Consolation prizes to be won: </b>Tabloids, Bicycles, Customized T-shirts, School bags, Lunch boxes etc.</p>
+
+
+            </div>
+            <div class="col-lg-6"><img class="img-fluid" src="{% static 'frontend/assets/img/marketer.png' %}" alt="" /></div>
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- =================================-->
+
+
+
+    {% block footer %}{% include 'partials/footer.html' %}{% endblock footer %}
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+    {% block script %}{% include 'partials/script.html' %}{% endblock script %}
+
+  {% endblock body %}
