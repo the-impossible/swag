@@ -5,7 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("SWAG_basic.urls", namespace="basic"))
+    path("", include("SWAG_basic.urls", namespace="basic")),
+    path("auth/", include("SWAG_auth.urls", namespace="auth")),
+    path("auth/payment/", include("SWAG_payment.urls", namespace="payment")),
 ]
 
 if settings.DEBUG:

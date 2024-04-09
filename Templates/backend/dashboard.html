@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+
+  {% block head %}{% include 'partials/auth_head.html' %}{% endblock head %}
+
+  {% block body %}
+  <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns  fixed-navbar">
+
+    {% block nav %} {% include 'partials/auth_nav.html' %} {% endblock %}
+
+    {% include 'partials/auth_sidebar.html' %}
+
+    <div class="app-content content container-fluid">
+
+        <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body"><!-- stats -->
+            {% include 'partials/messages.html' %}
+
+            <div class="row">
+
+
+                {% if request.user.is_staff %}
+                <div class="col-xl-3 col-lg-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="media">
+                                    <div class="media-body text-xs-left">
+                                        <h3 class="pink">{{all_purchase}}</h3>
+                                        <span>all purchase</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="media">
+                                    <div class="media-body text-xs-left">
+                                        <h3 class="teal">
+                                         {{all_users}}</h3>
+                                        <span> All Users </span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <i class="icon-user1 teal font-large-2 float-xs-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+
+                <div class="col-xl-3 col-lg-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="media">
+                                    <div class="media-body text-xs-left">
+                                        <h3 class="deep-orange">{{won}}</h3>
+                                        <span>competition won</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <i class="icon-diagram deep-orange font-large-2 float-xs-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="media">
+                                    <div class="media-body text-xs-left">
+                                        <h3 class="cyan">{{my_purchase}}</h3>
+                                        <span>number of purchase</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <i class="icon-ios-help-outline cyan font-large-2 float-xs-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+
+            </div>
+            <!--/ stats -->
+        </div>
+        </div>
+    </div>
+
+  {% comment %}
+
+  {% block footer %}{% include 'partials/auth_footer.html' %}{% endblock footer %}
+  {% endcomment %}
+
+
+
+  {% block script %}{% include 'partials/auth_script.html' %}{% endblock script %}
+
+</body>
+{% endblock body %}

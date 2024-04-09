@@ -122,7 +122,7 @@
               <p class="mb-0 fw-medium text-secondary">Participation in SWAG competitions fosters a sense of healthy competition among students, motivating them to strive for excellence..</p>
             </div>
           </div>
-          <div class="text-center"><a class="btn btn-warning mt-5" href="#" role="button">SIGN UP NOW</a></div>
+          <div class="text-center"><a class="btn btn-warning mt-5" href="{% url 'auth:register' %}" role="button">SIGN UP NOW</a></div>
         </div><!-- end of .container-->
 
       </section>
@@ -187,7 +187,7 @@
             <div class="col-lg-6 text-center">
               <h1 class="fw-bold mb-4 fs-7">Need a SWAG Box?</h1>
               <p class="mb-5 text-info fw-medium">simply create an account with us to get started. Once your account is set up, you can proceed to make a payment through our secure payment gateway. Once the payment is confirmed, your SWAG Box will be shipped to your provided address. Get ready to enhance your learning experience with SWAG! </p>
-              <a href="#" class="btn btn-warning btn-md">Sign Up</a>
+              <a href="{% url 'auth:register' %}" class="btn btn-warning btn-md">Sign Up</a>
             </div>
           </div>
         </div><!-- end of .container-->
@@ -223,6 +223,48 @@
       <!-- =================================-->
 
 
+
+      <!-- ============================================-->
+      <section class="py-md-11 py-8" id="contact">
+
+        <div class="bg-holder z-index--1 bottom-0 d-none d-lg-block background-position-top" style="background-image:url({% static 'frontend/assets/img/superhero/oval.png' %});opacity:.5; background-position: top !important ;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+              <h1 class="fw-bold mb-4 fs-7">Contact Us</h1>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+                <h5 class="text-secondary">contact us</h5>
+                <p class="mb-4 fw-medium text-secondary">
+                  Have questions, feedback, or inquiries about SWAG? We'd love to hear from you! Our dedicated team is here to assist you with any queries you may have. Whether you're interested in learning more about our platform, need assistance with registration, or want to collaborate with us, feel free to reach out.
+                </p>
+                <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                  <p class="fw-medium mb-0 text-secondary"><b>on X:</b> swingacademic</p>
+                </div>
+                <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                  <p class="fw-medium mb-0 text-secondary"><b>on Instagram:</b> swingacademicgame</p>
+                </div>
+                <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                  <p class="fw-medium mb-0 text-secondary"><b>on Facebook:</b> swing academic game swag</p>
+                </div>
+                <div class="d-flex align-items-center mb-3"><img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                  <p class="fw-medium mb-0 text-secondary"> <b>Call us on:</b> +2348036776587, +2348160280026, +2348031330185</p>
+                </div>
+              </div>
+              <div class="col-lg-6"><img class="img-fluid" src="{% static 'frontend/assets/img/validation.png' %}" alt="" />
+              </div>
+            </div>
+          </div><!-- end of .container-->
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- ============================================-->
 
     {% block footer %}{% include 'partials/footer.html' %}{% endblock footer %}
 

@@ -15,3 +15,6 @@ DATABASES = {
 # Media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Payment
+FLUTTERWAVE_SECRET_KEY = config("FLUTTERWAVE_SECRET_KEY")

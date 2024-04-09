@@ -11,6 +11,11 @@ mysqlclient = "*"
 django-crispy-forms = "*"
 crispy-bootstrap4 = "==2022.1"
 whitenoise = "*"
+django-phonenumbers = "*"
+django-phonenumber-field = "*"
+babel = "*"
+requests = "*"
+pymysql = "*"
 
 [dev-packages]
 

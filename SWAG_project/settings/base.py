@@ -20,7 +20,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "SWAG_basic"
+    "SWAG_basic",
+    "SWAG_auth",
+    "SWAG_payment",
+    "crispy_bootstrap4",
+    "crispy_forms",
+    "phonenumber_field",
 ]
 
 
@@ -37,7 +42,7 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = "SWAG_project.urls"
-# AUTH_USER_MODEL = 'SWAG_auth.User'
+AUTH_USER_MODEL = 'SWAG_auth.User'
 
 TEMPLATES = [
     {
@@ -103,3 +108,6 @@ STATICFILES_DIRS = [STATIC_DIR,]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = 'auth:login'
+
+PHONENUMBER_DB_FORMAT = "NATIONAL"
+PHONENUMBER_DEFAULT_REGION = "NG"

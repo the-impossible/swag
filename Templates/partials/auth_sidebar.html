@@ -1,0 +1,92 @@
+{% load static %}
+ <!-- main menu-->
+ <div data-scroll-to-active="true" class="main-menu menu-fixed menu-light menu-accordion menu-shadow">
+    <!-- main menu content-->
+    <div class="main-menu-content">
+        <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main mt-2">
+          <li class=" nav-item"><a href="{% url 'auth:dashboard' %}"><i class="icon-home3"></i><span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Dashboard</span></a>
+          </li>
+
+        {% if request.user.is_staff %}
+
+        <li class=" nav-item"><a href="#"><i class="icon-users2"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Users</span></a>
+          <ul class="menu-content">
+            <li><a href="{% url 'auth:create_user' %}" data-i18n="nav.page_layouts.1_column" class="menu-item">Create User</a>
+            </li>
+            <li><a href="{% url 'auth:manage_users' %}" data-i18n="nav.page_layouts.2_columns" class="menu-item">Manage Users</a>
+            </li>
+          </ul>
+        </li>
+        {% endif %}
+
+        <li class=" nav-item"><a href="#"><i class="icon-briefcase4"></i><span data-i18n="nav.project.main" class="menu-title">Payment</span></a>
+          <ul class="menu-content">
+
+            {% if request.user.is_staff %}
+            <li><a href="{% url 'payment:all_payments' %}" data-i18n="nav.invoice.invoice_template" class="menu-item">Verify Payment</a>
+            </li>
+            <li><a href="{% url 'payment:manage_receipts' %}" data-i18n="nav.invoice.invoice_template" class="menu-item">Verify Receipt Payment</a>
+            </li>
+            {% else %}
+
+            <li><a href="{% url 'payment:make_payment' %}" data-i18n="nav.gallery_pages.gallery_grid" class="menu-item">Make Purchase</a>
+            </li>
+            <li><a href="{% url 'payment:my_payments' %}" data-i18n="nav.gallery_pages.gallery_grid" class="menu-item">Purchase History</a>
+            </li>
+
+            {% endif %}
+
+          </ul>
+        </li>
+
+
+        {% if request.user.is_staff %}
+
+        <li class=" nav-item"><a href="#"><i class="icon-security"></i><span data-i18n="nav.cards.main" class="menu-title">Administrators</span></a>
+          <ul class="menu-content">
+            <li><a href="{% url 'auth:create_admin' %}" data-i18n="nav.cards.card_bootstrap" class="menu-item">Create Administrators</a>
+            </li>
+            <li><a href="{% url 'auth:manage_admin' %}" data-i18n="nav.cards.card_actions" class="menu-item">Manage Administrators</a>
+            </li>
+          </ul>
+        </li>
+        {% endif %}
+
+
+        {% comment %}
+
+        <li class=" nav-item"><a href="#"><i class="icon-whatshot"></i><span data-i18n="nav.advance_cards.main" class="menu-title">Auction</span></a>
+          <ul class="menu-content">
+            <li><a href="" data-i18n="nav.cards.card_statistics" class="menu-item">On-going Auctions</a>
+            </li>
+            <li><a href="" data-i18n="nav.cards.card_charts" class="menu-item">Auction Winners</a>
+            </li>
+            <li><a href="" data-i18n="nav.cards.card_charts" class="menu-item">closed Auctions</a>
+            </li>
+          </ul>
+        </li>
+        {% endcomment %}
+
+
+        <li class=" navigation-header"><span data-i18n="nav.category.support">Account</span><i data-toggle="tooltip" data-placement="right" data-original-title="Account" class="icon-ellipsis icon-ellipsis"></i>
+        </li>
+        <li class="nav-item"><a href="{% url 'auth:profile' request.user.pk %}"><i class="icon-user-tie"></i><span data-i18n="nav.support_raise_support.main" class="menu-title">Profile</span></a>
+        </li>
+
+        <li class="nav-item">
+        <a data-toggle="modal" data-target="#exampleModal" class="rich">
+          <i class="icon-power3"></i>
+            <span data-i18n="nav.support_documentation.main" class="menu-title">
+              Logout
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- /main menu content-->
+    <!-- main menu footer-->
+    <!-- include includes/menu-footer-->
+    <!-- main menu footer-->
+  </div>
+  <!-- / main menu-->
