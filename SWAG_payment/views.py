@@ -59,7 +59,7 @@ class GetPaymentLink(LoginRequiredMixin, View):
             "tx_ref": str(generate_transaction_reference()),
             "amount": str(total),  # Adjust the amount as needed
             "currency": "NGN",  # Currency code
-            "redirect_url": "https://ekitiswagquizcompetition.com/auth/payment/verify_payment",  # Redirect URL after payment
+            "redirect_url": "https://swingacademicgame.com/auth/payment/verify_payment",  # Redirect URL after payment
             "meta": {
                 'customer_id':str(request.user.phone_number),
                 'customer_mac':str(request.user.pk),
@@ -71,7 +71,7 @@ class GetPaymentLink(LoginRequiredMixin, View):
             },
             "customizations":{
                 'title':"SWAG Payment",
-                'logo':"https://ekitiswagquizcompetition.com/static/frontend/img/favicon.png",
+                'logo':"https://hrcs.spectrum-royalgate.com.ng/wp-content/uploads/2022/05/SPECTRUM-ROYAL-GATE.png",
                 'description':'SWAG Game Purchase'
             },
             # Add other required parameters here
