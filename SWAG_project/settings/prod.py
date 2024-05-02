@@ -6,8 +6,8 @@ ALLOWED_HOSTS = ['swingacademicgame.com', 'www.swingacademicgame.com']
 
 
 # Media files
-STATIC_ROOT = '/home/kadpwtrj/swingacademicgame.com/public_html/static'
-MEDIA_ROOT = '/home/kadpwtrj/swingacademicgame.com/public_html/media'
+STATIC_ROOT = '/home/kadpwtrj/swingacademicgame.com/static'
+MEDIA_ROOT = '/home/kadpwtrj/swingacademicgame.com/media'
 
 # Database
 DATABASES = {

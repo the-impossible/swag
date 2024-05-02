@@ -3,28 +3,32 @@ from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 from SWAG_auth.models import *
+from SWAG_payment.models import *
 
 
 class AccountCreationForm(forms.ModelForm):
 
     email = forms.CharField(help_text='Enter email', widget=forms.TextInput(
         attrs={
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
             'type': 'email',
+            'placeholder': 'Enter Email address',
         }
     ))
 
     password = forms.CharField(help_text='Enter Password', widget=forms.TextInput(
         attrs={
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
             'type': 'password',
+            'placeholder': 'Enter password',
+
         }
     ))
 
     name = forms.CharField(help_text='Enter Full name', widget=forms.TextInput(
         attrs={
             'placeholder': 'Enter Full name',
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
         }
     ))
 
@@ -63,7 +67,7 @@ class UpdateUserCreationForm(forms.ModelForm):
 
     email = forms.CharField(help_text='Enter email', widget=forms.TextInput(
         attrs={
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
             'type': 'email',
         }
     ))
@@ -71,7 +75,7 @@ class UpdateUserCreationForm(forms.ModelForm):
     name = forms.CharField(help_text='Enter Full name', widget=forms.TextInput(
         attrs={
             'placeholder': 'Enter Full name',
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
         }
     ))
 
@@ -80,7 +84,13 @@ class UpdateUserCreationForm(forms.ModelForm):
     address = forms.CharField(help_text='Enter address', widget=forms.TextInput(
         attrs={
             'placeholder': 'Enter address',
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
+        }
+    ))
+
+    state = forms.ModelChoiceField(queryset=States.objects.all(), empty_label="(Select State)", required=True, help_text="Select State", widget=forms.Select(
+        attrs={
+            'class':'form-control',
         }
     ))
 
@@ -94,7 +104,7 @@ class UpdateUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'name', 'phone_number', 'address', 'picture')
+        fields = ('email', 'name', 'phone_number', 'address', 'state', 'picture')
 
 class AdminCreationForm(AccountCreationForm, forms.ModelForm):
 
@@ -114,7 +124,7 @@ class UpdateAdminForm(forms.ModelForm):
 
     email = forms.CharField(help_text='Enter email', widget=forms.TextInput(
         attrs={
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
             'type': 'email',
         }
     ))
@@ -122,7 +132,7 @@ class UpdateAdminForm(forms.ModelForm):
     name = forms.CharField(help_text='Enter Full name', widget=forms.TextInput(
         attrs={
             'placeholder': 'Enter Full name',
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
         }
     ))
 
@@ -136,7 +146,7 @@ class UpdateAdminForm(forms.ModelForm):
             'accept': 'image/png, image/jpeg'
         }
     ))
-    
+
 
     class Meta:
         model = User

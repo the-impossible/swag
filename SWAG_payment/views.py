@@ -9,12 +9,13 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from SWAG_payment.models import *
 from SWAG_payment.forms import *
-# from SWAG_payment.decorator import *
+from SWAG_payment.decorators import *
 from django.conf import settings
 import uuid
 import requests
 # Create your views here.
 
+@method_decorator(has_updated, name="get")
 class MakePaymentView(LoginRequiredMixin, TemplateView):
     template_name = "backend/payment/make_payment.html"
 
@@ -35,14 +36,21 @@ def generate_transaction_reference():
 class GetPaymentLink(LoginRequiredMixin, View):
     template_name = "payment/make_payment.html"
 
-    def get(self, request):
+    def get(self, request, type):
 
         # purchase details
         quantity = int(request.GET['quantity'])
+
         if quantity < 1:
-            messages.error(request, 'Quantity has to be greater than 1!')
+            messages.error(request, 'Quantity has to be greater than 0!')
             return redirect('payment:make_payment')
-        amount = Product.objects.first().amount
+
+        if type == 'main':
+            amount = Product.objects.first().amount
+        if type == 'sub':
+            school_id = request.GET['school']
+            amount = Product.objects.last().amount
+
         total  = amount * quantity
 
         # Define your API endpoint
@@ -94,16 +102,25 @@ class GetPaymentLink(LoginRequiredMixin, View):
                 flutterwave_data = response.json()
 
                 # create a payment invoice
-                Payments.objects.create(amount=total, tx_ref=data['tx_ref'], user=request.user, status='pending', description="SWAG Game Purchase", quantity=quantity)
+                if type == 'main':
+                    Payments.objects.create(amount=total, tx_ref=data['tx_ref'], user=request.user, status='pending', description="SWAG Game Purchase", quantity=quantity)
+                if type == 'sub':
+                    school = Schools.objects.get(school_id=school_id)
+                    Payments.objects.create(amount=total, tx_ref=data['tx_ref'], user=request.user, status='pending', description="Compete for SWAG Box", quantity=quantity, school=school)
 
                 return redirect(flutterwave_data['data']['link'])
+
             else:
                 messages.error(request, 'Failed to initialize payment try again!!')
                 return redirect('payment:make_payment')
 
         except Exception as e:
             messages.error(request, f'An error occurred here!!')
-            return redirect('payment:make_payment')
+            if type == 'main':
+                return redirect('payment:make_payment')
+            if type == 'sub':
+                return redirect('payment:compete_for_box')
+
 
 class MyPaymentView(LoginRequiredMixin, ListView):
     model = Payments
@@ -192,13 +209,13 @@ class VerifyPayment(LoginRequiredMixin, View):
 
     def get(self, request):
 
-        if request.GET.get('status') == 'successful':
+        if request.GET.get('status') == 'successful' | request.GET.get('status') == 'completed':
             tx_ref = request.GET.get('tx_ref')
             transaction_id = request.GET.get('transaction_id')
 
             verify_payment(request, tx_ref, transaction_id, True)
         else:
-            messages.error(request, f'Transaction Failed!!')
+            messages.error(request, f'Transaction not completed, kindly re-query!!')
 
         if request.user.is_staff:
             return redirect('payment:all_payments')
@@ -283,3 +300,13 @@ class VerifyReceiptView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
         form = super().form_valid(form)
         return form
+
+@method_decorator(has_updated, name="get")
+class CompeteForBoxView(LoginRequiredMixin, TemplateView):
+    template_name = "backend/payment/compete_for_box.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CompeteForBoxView, self).get_context_data(**kwargs)
+        context['product'] = Product.objects.last()
+        context['form'] = CompeteForBoxForm(state=self.request.user.state)
+        return context

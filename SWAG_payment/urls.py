@@ -6,7 +6,7 @@ from SWAG_payment.views import *
 
 urlpatterns = [
     path('make_payment', MakePaymentView.as_view(), name='make_payment'),
-    path('initialize_payment', GetPaymentLink.as_view(), name='initialize_payment'),
+    path('initialize_payment/<str:type>', GetPaymentLink.as_view(), name='initialize_payment'),
 
     path('my_payments', MyPaymentView.as_view(), name='my_payments'),
     path('all_payments', AllPaymentView.as_view(), name='all_payments'),
@@ -17,4 +17,6 @@ urlpatterns = [
     path('upload_receipt', UploadReceiptView.as_view(), name='upload_receipt'),
     path('manage_receipts', ManageReceiptView.as_view(), name='manage_receipts'),
     path('verify_receipts', VerifyReceiptView.as_view(), name='verify_receipts'),
+
+    path('compete_for_box', CompeteForBoxView.as_view(), name='compete_for_box'),
 ]

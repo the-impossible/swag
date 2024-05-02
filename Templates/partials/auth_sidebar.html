@@ -29,7 +29,9 @@
             </li>
             {% else %}
 
-            <li><a href="{% url 'payment:make_payment' %}" data-i18n="nav.gallery_pages.gallery_grid" class="menu-item">Make Purchase</a>
+            <li><a href="{% url 'payment:make_payment' %}" data-i18n="nav.gallery_pages.gallery_grid" class="menu-item">Purchase Box</a>
+            </li>
+            <li><a href="{% url 'payment:compete_for_box' %}" data-i18n="nav.gallery_pages.gallery_grid" class="menu-item">Compete for the Box</a>
             </li>
             <li><a href="{% url 'payment:my_payments' %}" data-i18n="nav.gallery_pages.gallery_grid" class="menu-item">Purchase History</a>
             </li>

@@ -8,7 +8,6 @@ from datetime import datetime
 
 # Create your models here.
 
-
 class UserManager(BaseUserManager):
     def create_user(self, email, name, phone_number, password=None):
 
@@ -65,6 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     picture = models.ImageField(
         default='img/user.png', upload_to='uploads/', null=True)
     address = models.CharField(max_length=255, null=True, blank=True)
+    state = models.ForeignKey(to="SWAG_payment.States", null=True, blank=True, on_delete=models.CASCADE)
     date_joined = models.DateTimeField(
         verbose_name='date_joined', auto_now_add=True)
     last_login = models.DateTimeField(
@@ -84,6 +84,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_perm(self, perm, obj=None):
         return self.is_staff
+
+    def has_updated(self):
+        if self.state != None:
+            return True
+        return False
 
     def has_module_perms(self, app_label):
         return True

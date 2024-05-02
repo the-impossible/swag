@@ -5,3 +5,5 @@ from SWAG_payment.models import *
 admin.site.register(Product)
 admin.site.register(Payments)
 admin.site.register(PaymentReceipt)
+admin.site.register(States)
+admin.site.register(Schools)

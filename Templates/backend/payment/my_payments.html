@@ -2,7 +2,7 @@
 
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %}My Payment{% endblock title %}
+{% block title %}Payments{% endblock title %}
 
   {% block head %}{% include 'partials/auth_head.html' %}{% endblock head %}
 
@@ -63,6 +63,7 @@
                                         <th>Description</th>
                                         <th>Quantity</th>
                                         <th>Amount</th>
+                                        <th>School</th>
                                         <th>Status</th>
                                         <th>Date Paid</th>
                                         <th>Action</th>
@@ -77,6 +78,7 @@
                                         <td>{{ object.description }}</td>
                                         <td>{{ object.quantity }}</td>
                                         <td>{{ object.amount }}</td>
+                                        <td>{{ object.school.school_name }}</td>
                                         <td>
                                           <div class="tag tag-pill tag-{% if object.status == 'success' %}success{% elif object.status == 'pending' %}warning{% else %}danger{% endif %}">
                                             {{object.status}}

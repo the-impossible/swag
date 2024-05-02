@@ -2,7 +2,7 @@
 
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %}Make Payment{% endblock title %}
+{% block title %}compete_for_box{% endblock title %}
 
   {% block head %}{% include 'partials/auth_head.html' %}{% endblock head %}
 
@@ -19,14 +19,14 @@
       <div class="content-wrapper">
         <div class="content-header row">
           <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h2 class="content-header-title">Make Payment</h2>
+            <h2 class="content-header-title">Compete for the Swag Box</h2>
           </div>
           <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
             <div class="breadcrumb-wrapper col-xs-12">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{% url 'auth:dashboard' %}">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">make Payment </li>
+                <li class="breadcrumb-item active">compete for the box </li>
               </ol>
             </div>
           </div>
@@ -40,7 +40,7 @@
 				<div class="col-md-6 offset-md-3">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title" id="basic-layout-card-center"> Make Payment</h4>
+							<h4 class="card-title" id="basic-layout-card-center"> How it works</h4>
 							<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 							<div class="heading-elements">
 								<ul class="list-inline mb-0">
@@ -52,10 +52,13 @@
 						<div class="card-body collapse in">
 
 							<div class="card-block">
-								<img class="media-object" src="{{ product.picture.url }}" alt="image" style="width: 150px">
-
 								<div class="card-text">
-									<h4 class="text-center">A box cost ₦{{product.amount}}</h4>
+									<p class="text-justify"> The "Compete for SwagBox" option allows students who are unable to afford the full price of the SwagBox, priced at ₦25,000, to participate by paying a reduced fee of ₦2,500. To be eligible, 20 students from the same school must collectively pay the ₦2,500 fee. Once this condition is met, all participating students become eligible to compete for the SwagBox. The winner of the competition gets to use the SwagBox like any other participant in the championship.
+									</p>
+									<h4 class="text-center">To compete for a box cost ₦{{product.amount}}</h4>
+									<img class="media-object" src="{{ product.picture.url }}" alt="image" style="width: 150px">
+									<b>HOW TO PAY:</b>
+									<br>
 									<b>METHOD 1:</b>
 									<br>
 									<br>
@@ -69,11 +72,11 @@
 									<br>
 									<br>
 									<b>METHOD 2:</b>
-									<p> Fill the form below to make payment for the SWAG box. Kindly select the quantity of purchase.
+									<p> Fill the form below to make payment for the SWAG box. Kindly select your school, if your school is not among the dropdown, kindly contact us.
 									</p>
 								</div>
 
-									<form id="payment-form" action="{% url 'payment:initialize_payment' 'main' %}" class="form">
+									<form id="payment-form" action="{% url 'payment:initialize_payment' 'sub' %}" class="form">
 
 										{% csrf_token %}
 
@@ -93,9 +96,14 @@
 												<label>Quantity</label>
 												<div class="input-group">
 													<span class="input-group-addon">123</span>
-													<input type="number" class="form-control square" required placeholder="quantity" aria-label="quantity" name="quantity">
+													{{form.quantity}}
 													<span class="input-group-addon">00</span>
 												</div>
+											</div>
+
+											<div class="form-group">
+												<label>Select school</label>
+												{{form.school}}
 											</div>
 
 										</div>
@@ -107,7 +115,7 @@
 											<button type="submit" class="btn btn-primary" id="btnsubmit">
 												<i class="icon-cash"></i> Make Payment
 											</button>
-											<p class="mt-3"> Can't purchase the box? <a href="{% url 'payment:compete_for_box' %}">click here to view eligibility</a>and compete for the box.
+											<p class="mt-3"> I want to purchase a SwagBox  <a href="{% url 'payment:make_payment' %}">click here</a>.
 											</p>
 										</div>
 									</form>

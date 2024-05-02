@@ -17,10 +17,10 @@ class UploadReceiptForm(forms.ModelForm):
         fields = ('payment_receipt',)
 
 
-STATUS_CHOICES =(
-("pending", "pending"),
-("success", "success"),
-# ("failed", "failed"),
+STATUS_CHOICES = (
+    ("pending", "pending"),
+    ("success", "success"),
+    # ("failed", "failed"),
 )
 
 class VerifyUploadedReceiptForm(forms.ModelForm):
@@ -28,14 +28,14 @@ class VerifyUploadedReceiptForm(forms.ModelForm):
     transaction_id = forms.CharField(help_text='Enter transaction id', widget=forms.TextInput(
         attrs={
             'placeholder': 'Enter transaction id',
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
         }
     ))
 
     quantity = forms.IntegerField(help_text='Enter quantity', widget=forms.TextInput(
         attrs={
             'placeholder': 'Enter quantity',
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control ',
             'type': 'number'
         }
     ))
@@ -47,9 +47,29 @@ class VerifyUploadedReceiptForm(forms.ModelForm):
         model = Payments
         fields = ('transaction_id', 'quantity', 'status')
 
+class CompeteForBoxForm(forms.Form):
 
-"""
-    transaction_id = models.CharField(max_length=500, blank=True, null=True)
-    quantity = models.IntegerField()
-    status = models.CharField(max_length=500)
-"""
+    school = forms.ModelChoiceField(queryset=Schools.objects.all(), empty_label="(Select Your School)", required=True, help_text="Select Your School", widget=forms.Select(
+        attrs={
+            'class':'form-control',
+            'name':'school',
+        }
+    ))
+
+    quantity = forms.IntegerField(help_text='Enter quantity', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Enter quantity',
+            'class': 'form-control square',
+            'name': 'quantity'
+        }
+    ))
+
+
+    def __init__(self, *args, **kwargs):
+        state = kwargs.pop('state', '')
+
+        super(CompeteForBoxForm, self).__init__(*args, **kwargs)
+        self.fields['school'].queryset=Schools.objects.filter(state=States.objects.get(state=state))
+
+
+
