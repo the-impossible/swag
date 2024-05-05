@@ -30,4 +30,9 @@ urlpatterns = [
     path('auth/delete_admin/<str:pk>',
          DeleteAdminView.as_view(), name='delete_admin'),
 
+     # EMAIL
+     path('test_email', TestEmailView.as_view(), name="test_email"),
+     path('reset_password_activation/<uidb64>/<token>', ResetPasswordActivationView.as_view(), name='reset_password_activation'),
+
+
 ]

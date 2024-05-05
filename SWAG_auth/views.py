@@ -9,10 +9,16 @@ from django.views import View
 from django.urls import reverse_lazy
 from django.utils import timezone
 
+#Email
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
+
 # My app import
 from SWAG_auth.models import *
 from SWAG_auth.forms import *
 from SWAG_payment.models import *
+from SWAG_auth.utils import *
 
 # Create your views here.
 class LoginPageView(View):
@@ -63,9 +69,90 @@ class RegisterPageView(SuccessMessageMixin, CreateView):
     def get_success_url(self):
         return reverse("auth:login")
 
+    def form_valid(self, form):
+
+        # SEND EMAIL
+        user_details = {
+            'name':form.cleaned_data['name'],
+            'email':form.cleaned_data['email'],
+        }
+
+        Email.send(user_details, 'welcome')
+        return super().form_valid(form)
+
 class ResetPasswordPageView(View):
     def get(self, request):
         return render(request, 'backend/auth/reset_password.html')
+
+    def post(self, request):
+        email = request.POST.get('email').lower()
+        if email:
+            user = User.objects.filter(email=email)
+            if user.exists():
+                current_site = get_current_site(request).domain
+                data = user[0]
+                user_details = {
+                    'name':data.name,
+                    'email': data.email,
+                    'domain':current_site,
+                    'uid': urlsafe_base64_encode(force_bytes(data.user_id)),
+                    'token': email_activation_token.make_token(data),
+                }
+                Email.send(user_details, 'reset')
+                messages.success(request, 'A mail has been sent to your mailbox to enable you reset your password!')
+            else:
+                messages.error(request, "Email address doesn't exist!")
+        return render(request, 'backend/auth/reset_password.html')
+
+class ResetPasswordActivationView(View):
+    def get(self, request, uidb64, token):
+        context = {
+            'uidb64':uidb64,
+            'token':token
+        }
+        user_id = force_str(force_bytes(urlsafe_base64_decode(uidb64)))
+        try:
+            user = User.objects.get(user_id=user_id)
+            if email_activation_token.check_token(user, token):
+                messages.info(request, 'Create a password for your account!')
+                return render(request, 'backend/auth/complete_password_reset.html', context)
+            else:
+                messages.info(request, 'Link broken or Invalid reset link, Please Request a new one!')
+                return redirect('auth:reset_password')
+
+        except User.DoesNotExist:
+            messages.error(request, 'Oops User not found, hence password cannot be changed, kindly request for a new link!')
+            return redirect('auth:reset_password')
+
+    def post(self, request, uidb64, token):
+        user_id = force_str(force_bytes(urlsafe_base64_decode(uidb64)).decode())
+        context = {
+            'uidb64':uidb64,
+            'token':token
+        }
+        try:
+            user = User.objects.get(user_id=user_id)
+            password1 = request.POST['password1']
+            password2 = request.POST['password2']
+
+            if(password1 != password2):
+                messages.error(request, 'Password don\'t match!')
+                return render(request, 'backend/auth/complete_password_reset.html', context)
+
+            if(len(password1) < 6):
+                messages.error(request, 'Password too short!')
+                return render(request, 'backend/auth/complete_password_reset.html', context)
+
+            user.set_password(password1)
+            user.save()
+            messages.success(request, 'Password Changed you can now login with new password')
+
+            return redirect('auth:login')
+
+        except User.DoesNotExist:
+            messages.error(request, 'Snaps user does not exist!')
+            return redirect('auth:reset_password')
+
 
 class DashboardPageView(LoginRequiredMixin, TemplateView):
     template_name = "backend/dashboard.html"
@@ -172,3 +259,8 @@ class DeleteAdminView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = User
     success_message = 'Admin Account Deleted Successfully!'
     success_url = reverse_lazy('auth:manage_admin')
+
+class TestEmailView(TemplateView):
+
+    template_name = "backend/auth/complete_password_reset.html"
+    # template_name = "backend/email/intro_mail.html"
