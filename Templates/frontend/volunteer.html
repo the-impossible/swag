@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Volunteer{% endblock title %}
+{% load crispy_forms_tags %}
+
+{% block head %}{% include 'partials/head.html' %}{% endblock head %}
+
+  {% block body %}
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+      {% block nav %} {% include 'partials/nav2.html' %} {% endblock %}
+
+      <!-- ============PRIZE===============-->
+      <section class="pt-5" id="marketer">
+
+
+        <div class="container">
+          {% include 'partials/messages.html' %}
+          <div class="row">
+            <div class="col-lg-6">
+              <h5 class="text-secondary">Volunteer with SWAG</h5>
+              <p class="mb-2 fs-6 fw-bold">Join Us in Empowering the Next Generation</p>
+              <p class="mb-4 fw-medium text-secondary">At SWAG - Swing Academic Game, we believe in the power of community and the importance of giving back. That's why we're always looking for passionate volunteers to join our team and help us make a difference in the lives of students.</p>
+
+              <p class="mb-2 fs-6 fw-bold">Why Volunteer with SWAG?</p>
+              <p class="mb-4 fw-medium text-secondary"><b class="fw-bold fs-1">Make a Difference: </b> TAs a SWAG volunteer, you'll have the opportunity to directly impact the lives of students by promoting academic excellence and fostering a love for learning</p>
+
+              <p class="mb-4 fw-medium text-secondary"><b class="fw-bold fs-1">Gain Valuable Experience: </b> Volunteering with SWAG provides valuable experience in event coordination, marketing, communication, and more. It's a great way to enhance your skills and build your resume</p>
+
+              <p class="mb-4 fw-medium text-secondary"><b class="fw-bold fs-1">Be Part of a Community: </b> Joining the SWAG volunteer team means becoming part of a supportive and collaborative community dedicated to making a positive impact in education</p>
+
+            </div>
+            <div class="col-lg-6"><img class="img-fluid" src="{% static 'frontend/assets/img/marketer.png' %}" alt="" /></div>
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- =================================-->
+
+      <!--==========SPONSORSHIP============-->
+      <section class="pt-5" id="sponsorship">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6"><img class="img-fluid" src="{% static 'frontend/assets/img/manager.png' %}" alt="" /></div>
+            <div class="col-lg-6">
+              <h5 class="text-secondary">Interested</h5>
+              <h2 class="mb-2 fs-7 fw-bold">How to Volunteer?</h2>
+              <p class="mb-4 fw-medium text-secondary">
+                Ready to join our team of dedicated volunteers? Fill out the form below to express your interest in volunteering with SWAG. We'll reach out to discuss available opportunities and how you can get involved.
+              </p>
+
+              <form method="post" class="form">
+                {% csrf_token %}
+                <div class="form-body">
+                  {{ form|crispy }}
+                </div>
+                <button type="submit" class="btn btn-block btn-primary">submit</button>
+
+              </form>
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- ============================================-->
+
+     {% include 'partials/contact.html' %}
+
+
+    {% block footer %}{% include 'partials/footer.html' %}{% endblock footer %}
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+    {% block script %}{% include 'partials/script.html' %}{% endblock script %}
+
+  {% endblock body %}

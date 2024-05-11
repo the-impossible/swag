@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}GBL{% endblock title %}
+{% load crispy_forms_tags %}
+
+{% block head %}{% include 'partials/head.html' %}{% endblock head %}
+
+  {% block body %}
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+      {% block nav %} {% include 'partials/nav2.html' %} {% endblock %}
+
+
+      <!-- =========COMPETITION==========-->
+      <section class="pt-5" id="manager">
+
+        <div class="container">
+          {% include 'partials/messages.html' %}
+          <div class="row">
+            <div class="col-lg-6">
+              <h5 class="text-secondary">Game-Based Learning</h5>
+              <p class="fs-7 fw-bold mb-2">Training on Game-Based Learning (GBL) for Early Career Educators and Teachers</p>
+              <p class="mb-4 fw-medium text-secondary">
+                Join us for a comprehensive Training on Game-Based Learning (GBL) designed specifically for early career educators and teachers in Ekiti State. Game-Based Learning is an innovative approach that uses games to engage students, enhance learning outcomes, and promote critical thinking skills.
+              </p>
+              <h5 class="text-secondary">Details</h5>
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary"><b>Date:</b> Saturday, 18th of May, 2024</p>
+              </div>
+              <div class="d-flex align-items-center mb-3"> <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary"><b>Time:</b>12noon - 3pm</p>
+              </div>
+              <div class="d-flex align-items-center mb-0">
+                <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary"> <b>Venue:</b> 7, Tunji Osunnuyi Street, behind Dave Hotel, Adehun, Ado Ekiti.
+                </p>
+              </div>
+
+              <div class="d-flex align-items-center mb-0">
+                <img class="me-sm-4 me-2" src="{% static 'frontend/assets/img/tick.png' %}" width="35" alt="tick" />
+                <p class="fw-medium mb-0 text-secondary"> <b>Space Limit:</b> Only 30 spots available.
+                </p>
+              </div>
+
+
+              <p class="fs-7 fw-bold mb-3 mt-4">Benefits of the Training</p>
+
+              <ul>
+                <li><p class="fw-medium mb-0 text-secondary"><b>Training Materials:</b>Gain access to valuable training materials and resources to support your implementation of GBL in the classroom</p></li>
+                <li><p class="fw-medium mb-0 text-secondary"><b>Certificate:</b>Receive a certificate of completion upon finishing the training, demonstrating your commitment to professional development</p></li>
+                <li><p class="fw-medium mb-0 text-secondary"><b>Refreshment:</b>Enjoy complimentary refreshments during the training session.</p></li>
+                <li><p class="fw-medium mb-0 text-secondary"><b>Future Training and Job Opportunities:</b>Stay informed about future training sessions and job opportunities in the field of education..</p></li>
+              </ul>
+
+            </div>
+            <div class="col-lg-6">
+              <p class="fs-7 fw-bold mb-3 mt-4">Who Should Attend</p>
+              <p class="fs-2 fw-bold mb-2 mt-1">This training is ideal for:</p>
+
+              <ul>
+                <li>Early career educators</li>
+                <li>Teachers looking to incorporate innovative teaching methods</li>
+                <li>Educators interested in enhancing student engagement and learning outcomes</li>
+              </ul>
+              <p class="fs-1 fw-bold mb-2 mt-1">Note: Attendance is free but registration is compulsory!
+              </p>
+              <img class="img-fluid" src="{% static 'frontend/assets/img/validation.png' %}" alt="" />
+            </div>
+          </div>
+        </div><!-- end of .container-->
+      </section>
+      <!-- ============================================-->
+
+      <!--==========SPONSORSHIP============-->
+      <section class="pt-5" id="sponsorship">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6"><img class="img-fluid" src="{% static 'frontend/assets/img/manager.png' %}" alt="" /></div>
+            <div class="col-lg-6">
+              <h5 class="text-secondary">Get Started</h5>
+              <h2 class="mb-2 fs-7 fw-bold">Registration</h2>
+              <p class="mb-4 fw-medium text-secondary">
+                To secure your spot for the Training on Game-Based Learning (GBL), please fill out the registration form below. Hurry, as space is limited to 30 participants.
+              </p>
+
+              <form method="post" class="form">
+
+                {% csrf_token %}
+
+                <div class="form-body">
+                  {{ form|crispy }}
+                </div>
+                <button type="submit" class="btn btn-block btn-primary">submit</button>
+
+              </form>
+
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- ============================================-->
+
+     {% include 'partials/contact.html' %}
+
+
+    {% block footer %}{% include 'partials/footer.html' %}{% endblock footer %}
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+    {% block script %}{% include 'partials/script.html' %}{% endblock script %}
+
+  {% endblock body %}

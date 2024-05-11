@@ -6,3 +6,16 @@
 <script src="{% static 'frontend/vendors/fontawesome/all.min.js' %}"></script>
 <script src="{% static 'frontend/assets/js/theme.js' %}"></script>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap" rel="stylesheet">
+
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(300, 0).slideUp(300, function(){
+            $(this).remove();
+        });
+
+        $("#remove").fadeTo(300, 0).slideUp(300, function(){
+            $(this).remove();
+        });
+
+    }, 10000);
+</script>

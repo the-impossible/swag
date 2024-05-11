@@ -262,5 +262,5 @@ class DeleteAdminView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 class TestEmailView(TemplateView):
 
-    template_name = "backend/auth/complete_password_reset.html"
-    # template_name = "backend/email/intro_mail.html"
+    # template_name = "backend/auth/complete_password_reset.html"
+    template_name = "backend/email/volunteer.html"
