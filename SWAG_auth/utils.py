@@ -23,7 +23,6 @@ class EmailThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        print(f"SENDING OUT MAILS NOW!!")
         send_mail(
             self.email_subject,
             self.email_body,
@@ -47,6 +46,7 @@ class Mailer(View):
         reset = 'Reset Your SWAG Account Password'
         volunteer = 'A volunteer just applied'
         training = 'A user just applied for training'
+        confirmation = "Confirmation: Receipt of Your Application"
 
         if which == 'welcome':
 
@@ -70,10 +70,6 @@ class Mailer(View):
 
         elif which == 'volunteer' or which == 'training':
 
-            activation_path = 'backend/email/volunteer.html'
-
-            receiver = ["swag4africa@gmail.com"]
-
             context_data = {
                 'name': user_details['name'],
                 'email':user_details['email'],
@@ -84,14 +80,31 @@ class Mailer(View):
             }
 
             if which == 'volunteer':
-                email_subject = volunteer
+                email_subject = confirmation
                 context_data['role'] = user_details['role_you_want_to_volunteer']
                 context_data['type'] = "volunteer"
 
+                activation_path = 'backend/email/volunteer_mail.html'
+                receiver = [user_details['email']]
+                email_body = get_template(activation_path).render(context_data)
+                EmailThread(email_subject, email_body, receiver).start()
+
+                email_subject = volunteer
+
+
             if which == 'training':
-                email_subject = training
+                email_subject = confirmation
                 context_data['type'] = "training"
 
+                activation_path = 'backend/email/gle_mail.html'
+                receiver = [user_details['email']]
+                email_body = get_template(activation_path).render(context_data)
+                EmailThread(email_subject, email_body, receiver).start()
+
+                email_subject = training
+
+            activation_path = 'backend/email/applicant_mail.html'
+            receiver = ["swag4africa@gmail.com",]
             email_body = get_template(activation_path).render(context_data)
             EmailThread(email_subject, email_body, receiver).start()
 

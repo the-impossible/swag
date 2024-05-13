@@ -71,11 +71,6 @@ class TrainingPageView(SuccessMessageMixin, CreateView):
         # SEND EMAIL
         Email.send(user_details, 'training')
 
-        if entries < 30:
-            return super().form_valid(form)
-        else:
-            Training.objects.create(phone_number=user_details['phone'], gender=user_details['gender'], name=user_details['name'], email=user_details['email'], occupation=user_details['occupation'], age=user_details['age'],)
-            messages.error(self.request, "Site is no longer accepting response, no slot left!!")
-            return super().form_invalid(form)
+        return super().form_valid(form)
 
 
